@@ -88,7 +88,7 @@ def run():
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
     running = 1
     
-    vectors = getVectorsFromOBJ("teapot.obj.1") 
+    vectors = getVectorsFromOBJ("teapot.obj") 
     # vectors = getVectorsFromOBJ("cube.obj")
     
     npVectors = []
