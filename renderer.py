@@ -110,6 +110,9 @@ def getFacesAndVerticesFromOBJ(filename):
 
 
 def run():
+    if len(sys.argv) == 1:
+        print("Usage: python3 renderer.py <.obj filename>")
+        exit()
     start_time = time.time()
     pygame.init()
     screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
@@ -220,12 +223,6 @@ def run():
             phi -= SPEED * dt
         
         pygame.display.flip()
-import cProfile, pstats, io
-pr = cProfile.Profile()
-pr.enable()
-try:
-    run()
-except:
-    pass
-pr.disable()
-pr.dump_stats("prof.prof")
+
+
+run()
