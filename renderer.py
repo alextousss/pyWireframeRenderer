@@ -16,6 +16,7 @@ Vr = WINDOW_WIDTH/2
 
 
 def NDCToScreen(matrix):
+    """Transforms NDC coordinates (-1, 1) range to screen coordinates)"""
     return np.matmul(
         np.array([
             [(Vr-Vl)/2, 0, 0, (Vr+Vl)/2],
@@ -28,6 +29,7 @@ def NDCToScreen(matrix):
 
 
 def translate(matrix, x, y, z):
+    """Translates the matrix"""
     return np.matmul(
             np.array([
                 [1, 0, 0, x],
@@ -40,6 +42,7 @@ def translate(matrix, x, y, z):
 
 
 def scale(matrix, number):
+    """Scales around the origin"""
     return np.matmul(
             np.array([
                 [number, 0, 0, 0],
@@ -52,13 +55,14 @@ def scale(matrix, number):
 
 
 def rotate(matrix, phi, psi, theta):
+    """Rotates the matrix with around the origin using euler angles"""
     cos = math.cos
     sin = math.sin
     return np.matmul(
             np.array([
                 [cos(theta)*cos(psi), -cos(phi)*sin(psi)+sin(phi)*sin(theta)*cos(psi), sin(phi)*sin(psi)+cos(phi)*sin(theta)*cos(psi), 0],
                 [cos(theta)*sin(psi), cos(phi)*cos(psi)+sin(phi)*sin(theta)*sin(psi), -sin(phi)*cos(psi)+cos(phi)*sin(theta)*sin(psi), 0],
-                [-sin(theta), sin(psi)*cos(theta), cos(psi)*sin(theta), 0],
+                [-sin(theta), sin(phi)*cos(theta), cos(phi)*sin(theta), 0],
                 [0, 0, 0, 1]
             ]),
             matrix
@@ -66,6 +70,7 @@ def rotate(matrix, phi, psi, theta):
 
 
 def perspective(matrix, c):
+    """Returns the perspective projection"""
     return np.matmul(
         np.array([
             [1, 0, 0, 0],
@@ -78,19 +83,14 @@ def perspective(matrix, c):
 
 
 def project(matrix):
+    """Divides by the last coordinate for perspective"""
     for i in range(3):
         matrix[i] = np.divide(matrix[i], matrix[3])
     return matrix
 
 
-def getScreenCoordsFromNDC(coords):
-    return (
-        (coords[0] + 1)/2 * WINDOW_WIDTH,
-        WINDOW_HEIGHT - ((coords[1] + 1)/2 * WINDOW_HEIGHT)
-    )
-
-
 def getFacesAndVerticesFromOBJ(filename):
+    """Returns the faces and vertcies at the specified filename"""
     vectors = []
     vectors.append([])
     handler = pywavefront.Wavefront(
