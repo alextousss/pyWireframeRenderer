@@ -7,7 +7,7 @@ Its only dependencies are Numpy for matrix multiplications and Pygame to render 
 ![teapot rendered with pyWireframeRenderer](https://raw.githubusercontent.com/belzebalex/pyWireframeRenderer/master/images/teapot.png "Teapot Render")
 
 ### Cube
-![Cube rendered with pyWireframeRenderer](https://raw.githubusercontent.com/belzebalex/pyWireframeRenderer/master/images/cube_demo.png "Cube Render")https://raw.githubusercontent.com/belzebalex/pyWireframeRenderer/master/images/teapot.png
+![Cube rendered with pyWireframeRenderer](https://raw.githubusercontent.com/belzebalex/pyWireframeRenderer/master/images/cube_demo.png "Cube Render")
 
 ## Install
 ```
